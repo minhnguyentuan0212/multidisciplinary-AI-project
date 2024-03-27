@@ -30,6 +30,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: ${{ secrets.ADAFRUIT_IO_KEY }}
     - run: npm ci
     - run: npm run server
