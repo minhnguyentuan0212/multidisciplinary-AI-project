@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  ADAFRUIT_IO_KEY: ${{secrets.ADAFRUIT_IO_KEY}}
+  MONGO_URI: ${{secrets.MONGO_URI}}
+
 jobs:
   build:
 
@@ -26,6 +30,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: ${{ secrets.ADAFRUIT_IO_KEY }}
     - run: npm ci
-    - run: npm i -g nodemon
     - run: npm run server
