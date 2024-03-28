@@ -1,0 +1,64 @@
+.welcome {
+    height: auto;
+    padding: 0;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 40px; 
+    place-items: center;
+}
+
+.welcome .avatar img {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    float: left;
+
+    border-radius: 15%;
+}
+
+.welcome .hello {
+    font-size: 12px;
+}
+
+.welcome .user {
+    font-weight: bold;
+}
+
+.nav-list {
+    height: auto;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.nav-list .nav-row {
+    height: 40px;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-list .nav-row:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.nav-list .title {
+    font-size: 20px;
+    color: #646cff;
+}
+
+.nav-list .icon {
+    flex: 30%;
+    display: grid;
+    place-items: center;
+}
+
+.nav-list .option {
+    flex: 70%;
+}

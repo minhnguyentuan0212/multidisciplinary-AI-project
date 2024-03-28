@@ -1,0 +1,91 @@
+.history .title-bar {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 25px;
+    display: flex;
+}
+
+.history .title {
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    flex: 40%;
+    /* background-color: green; */
+    display: grid;
+}
+
+.history .expand {
+    font-size: 15px;
+    padding-bottom: 2px;
+    flex: 60%;
+    text-align: right;
+    color: #646cff;
+    /* background-color: red; */
+    align-self: flex-end;
+}
+
+.history .expand:hover {
+    cursor: pointer;
+}
+
+.hist-data {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.hist-data .hist-row {
+    height: 30px;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    margin-bottom: 15px;
+    color: black;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center; */
+}
+
+.hist-data .device-info {
+    width: 100%;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+}
+
+.hist-data .device {
+    flex: 70%;
+    display: grid;
+}
+
+.hist-data .time {
+    text-align: right;
+    flex: 30%;
+}
+
+.hist-data .user-info {
+    width: 100%;
+    font-size: 12px;
+    display: flex;
+}
+
+.hist-data .status {
+    font-weight: bold;
+    flex: 30%;
+    display: grid;
+}
+
+.hist-data .user {
+    flex: 70%;
+    color: gray;
+}
+
+.user-info .on {
+    color: green;
+}
+
+.user-info .off {
+    color: red;
+}
