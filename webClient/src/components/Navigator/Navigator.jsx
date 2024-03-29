@@ -9,7 +9,7 @@ import { MenuOptions, SettingOptions } from './NavigatorOptions';
 
 const Navigator = () => {
     return (
-        <div className="navigator shadow p-4 mb-5 me-4">
+        <div className="navigator shadow p-4 mt-0 mb-5 me-4">
             <div className='welcome'>
                 <div className="avatar"><img src="https://www.nautiljon.com/images/perso/00/76/loid_forger_20767.webp" /></div> {/* Need API */}
                 <div className="hello-user">
