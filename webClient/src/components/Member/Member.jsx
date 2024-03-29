@@ -6,7 +6,7 @@ import { MemberList } from './MemberList';
 
 const Member = () => {
     return (
-        <div className="member">
+        <div className="member mb-0 mt-0">
             <div className="title-bar">
                 <div className="title">Members</div>
                 <div className="expand">View all</div>
