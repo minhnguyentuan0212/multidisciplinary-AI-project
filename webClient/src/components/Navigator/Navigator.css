@@ -61,4 +61,5 @@
 
 .nav-list .option {
     flex: 70%;
+    float: left;
 }
