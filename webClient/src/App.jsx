@@ -7,6 +7,8 @@ import Navigator from './components/Navigator/Navigator'
 import History from './components/History/History'
 import Member from './components/Member/Member'
 import './App.css'
+import Statistics from './components/Statistics/Statistics'
+import chartData from './dataForTestUI'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,6 +29,7 @@ function App() {
         </div>
         <div className='col-6'>
         <RoomBar data={data}></RoomBar>
+        <Statistics data={chartData}></Statistics>
         </div>
         <div className='col-3'>
           <div className='row'>

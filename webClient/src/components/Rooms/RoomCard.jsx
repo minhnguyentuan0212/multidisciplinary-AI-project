@@ -2,8 +2,8 @@ function RoomCard({data}) {
     return (
         <div className={
             data.selected
-            ? "bg-primary room-card me-4"
-            : "room-card me-4"
+            ? "bg-primary room-card me-4 mb-2 me-2"
+            : "room-card me-4 mb-2"
         } style={{width:"20%",aspectRatio:"1/1",borderRadius:"10%"}}>
             <div className="row h-50 d-flex align-items-center">
                 <div className="m-0 w-50 h-50">
