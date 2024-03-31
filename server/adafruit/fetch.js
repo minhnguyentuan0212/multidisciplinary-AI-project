@@ -19,28 +19,24 @@ const getData = async () => {
     const devices = await Device.find();
     devices.map(async (device) => {
       const response = await axios.get(
-        `${baseURL}/feeds/${device.key}/data?limit=10`
+        `${baseURL}/feeds/${device.key}/data?limit=30`
       );
 
       const responseData = response.data;
-      // console.log(responseData);
-
+      const existingIds = new Set(device.data.map(e => e.data_id));
       if (responseData.length !== 0) {
-        responseData.map(async (eachData) => {
+        for (const eachData of responseData) {
           const { id, value, created_at } = eachData;
-          const newData = { data_id: id, value, created_at };
-          if (device.data.length == 15) {
-            device.data.pop();
-          }
-
-          if (device.data.length == 0) {
-            device.data.push(newData);
-          }
-
-          if (device.data.filter((e) => e.data_id == id).length == 0) {
+          if (!existingIds.has(id)) {
+            const newData = { data_id: id, value, created_at };
+            console.log(`New data in ${device.key}: `, newData);
             device.data.unshift(newData);
+            existingIds.add(id);
           }
-        });
+        }
+        if (device.data.length > 30) {
+          device.data = device.data.slice(0,30);
+        }
         await device.save();
       }
     });
