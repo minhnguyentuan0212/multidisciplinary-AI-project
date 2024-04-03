@@ -2,7 +2,7 @@ import RoomCard from "./RoomCard";
 import { useState } from "react";
 
 function RoomBar(data){
-    let rooms = data.data 
+    let rooms = data.data[0]
     const viewmore  = rooms.length > 4
     const [viewAll,setViewAll] = useState(false)
     const numDisplay = viewmore?4:rooms.length
@@ -20,7 +20,7 @@ function RoomBar(data){
         <div className="row d-flex ms-2">
             {
                 rooms.slice(0,viewAll?rooms.length:numDisplay).map((item)=> (
-                    <RoomCard data={item}></RoomCard>
+                    <RoomCard data={[item,data.data[1],data.data[2]]}></RoomCard>
                 ))
             }
         </div>
