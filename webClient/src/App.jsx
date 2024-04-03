@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import kitchen from './assets/kitchen.svg'
 import RoomBar from './components/Rooms/RoomsBar'
 import Navigator from './components/Navigator/Navigator'
 import History from './components/History/History'
@@ -10,49 +9,29 @@ import './App.css'
 import Statistics from './components/Statistics/Statistics'
 import chartData from './dataForTestUI'
 import DevicesBar from './components/Devices/DevicesBar'
-
+import {getAllRoomsData,getDevicesOfRoom,toggleDevice} from './business/HomePageData'
 function App() {
   const [count, setCount] = useState(0)
-  // temp data for testing
-  const data = [
-    {"room_name":"kitchen","devices":[
-      {
-        name:"air conditioner",
-        isOn: true,
-        id: 12345,
-        icon: "severe_cold"
-      }, 
-      {
-        name:"Television",
-        isOn: false,
-        id: 12346,
-        icon: "tv"
-      },
-      {
-          name:"Lamp",
-          isOn: false,
-          id: 12347,
-          icon:"table_lamp"
-      },
-      {
-        name:"Light at the bed",
-        isOn: true,
-        id: 12348,
-        icon: "light"
-      },
-      {
-        name:"Light at the door",
-        isOn: true,
-        id: 12349,
-        icon: "light"
-      },
-    ],"img":kitchen,"selected":1},
-    {"room_name":"living room","devices":[1,2,3],"img":kitchen,"selected":0},
-    {"room_name":"bathroom","devices":[1,2,3,4],"img":kitchen,"selected":0},
-    {"room_name":"bedroom","devices":[1,2,3,4],"img":kitchen,"selected":0},
-    {"room_name":"bedroom","devices":[1,2,3,4],"img":kitchen,"selected":0},
-    {"room_name":"bedroom","devices":[1,2,3,4],"img":kitchen,"selected":0}
-]
+  const [data, setData] = useState([])
+  const [selectedRoom, setSelectedRoom] = useState("0")
+  const [devicesData, setDevicesData] = useState({signal:[],devices:[]})
+  useEffect(()=>{
+    const getData = async () => {
+      const res = await getAllRoomsData()
+      setData(res)
+      setSelectedRoom(res[0].room_id)
+    }
+    getData()
+  }, []
+  )
+  useEffect(()=> {
+    const getData = async () => {
+      const res = await getDevicesOfRoom(selectedRoom)
+      setDevicesData(res)
+      console.log(res)
+    }
+    getData()
+  },[selectedRoom,count])
   return (
     <>
     <div className='row'>
@@ -60,9 +39,15 @@ function App() {
         <Navigator></Navigator>
         </div>
         <div className='col-6'>
-        <RoomBar data={data}></RoomBar>
-        <Statistics data={chartData}></Statistics>
-        <DevicesBar data={data[0].devices}></DevicesBar>
+        <RoomBar data={[data,selectedRoom,setSelectedRoom]}></RoomBar>
+        <Statistics data={devicesData.signal}></Statistics>
+        <DevicesBar data={[devicesData.devices,((device_id,state)=>{
+          const toggle = async () => {
+            toggleDevice(device_id,state)
+          }
+          toggle()
+          setCount((count+1)%2)
+        })]}></DevicesBar>
         </div>
         <div className='col-3'>
           <div className='row'>

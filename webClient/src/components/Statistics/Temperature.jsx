@@ -25,7 +25,12 @@ function Temperature(data){
             legend: {
                 display: false
             }
-        }
+        },
+        // scales: {
+        //     x: {
+        //         display: false
+        //     }
+        // }
     }
     return (
         <>

@@ -1,22 +1,28 @@
-function RoomCard({data}) {
+function RoomCard(data) {
+    const room = data.data[0]
+    const selected = (data.data[1] == room.room_id)
+    const setSelected = data.data[2]
+    // return <></>
     return (
         <div className={
-            data.selected
-            ? "bg-primary room-card me-3 mb-2"
-            : "room-card me-3 mb-2"
-        } style={{width:"22%",aspectRatio:"1/1",borderRadius:"10%"}}>
+            selected
+            ? "bg-primary room-card me-3 mb-2 btn"
+            : "room-card me-3 mb-2 btn"
+        } style={{width:"22%",aspectRatio:"1/1",borderRadius:"10%"}} onClick={(e)=>{
+            e.preventDefault()
+            setSelected(room.room_id)}}>
             <div className="row h-50 d-flex align-items-center">
                 <div className="m-0 w-50 h-50">
-                <img alt={data.room_name} className="m-0" style={{backgroundColor: 
-                    data.selected ? "#3054AA" : "#2396EF",borderRadius:"30%"
-                }} src={data.img}/>
+                <span className="m-0 material-symbols-outlined" style={{backgroundColor: 
+                    selected ? "#3054AA" : "#2396EF",borderRadius:"30%"
+                }}>{room.icon}</span>
                 </div>
             </div>
-            <div className="row ps-3 chivo-reg" style={{color: data.selected? 'white':"black"}}>
-                {data.room_name}
+            <div className="row ps-3 chivo-reg" style={{color: selected? 'white':"black"}}>
+                {room.name}
             </div>
-            <div className="row ps-3 chivo-reg" style={{color: data.selected? 'white':"black"}}>
-                {data.devices.length} devices
+            <div className="row ps-3 chivo-reg" style={{color: selected? 'white':"black"}}>
+                {room.devices.length} devices
             </div>
         </div>
         

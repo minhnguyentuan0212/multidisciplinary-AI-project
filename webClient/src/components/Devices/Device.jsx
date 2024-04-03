@@ -1,6 +1,9 @@
 import { useState } from "react";
 function Device(data){
-    const [isOn,setOn] = useState(data.data.isOn)
+    const devices = data.data[0]
+    const toggleFunction = data.data[1]
+    const isOn = (devices.data.length != 0 &&  devices.data[0].value == 1)
+    // const [isOn,setOn] = useState(currState)
     return (
         <>
         <div 
@@ -13,7 +16,7 @@ function Device(data){
             <div className="col-6 align-content-end form-check form-switch">
                 <input className="form-check-input" type="checkbox" role="switch" checked={isOn}
                 onChange={(e) => {
-                    setOn(!isOn)
+                    toggleFunction(devices.device_id,isOn?1:0)
                 }}
                 />
             </div>
@@ -22,11 +25,11 @@ function Device(data){
                 <div className="m-0 w-50 h-50">
                 <span className="m-0 material-symbols-outlined" style={{backgroundColor: 
                     data.selected ? "#3054AA" : "#2396EF",borderRadius:"30%"
-                }}>{data.data.icon}</span>
+                }}>{devices.icon}</span>
                 </div>
             </div>
         <div className="row chivo-reg ps-2 pt-0 mt-2">
-            {data.data.name}
+            {devices.name}
         </div>
         </div>
         
