@@ -47,13 +47,17 @@ const getData = async () => {
 };
 
 const initialFetch = async () => {
-    setInterval(async () => {
-        var start =  new Date().getTime();
-        // TODO: Fetch data from Adafruit
-        await getData();
-        var end = new Date().getTime();
-        console.log(`Fetched time: ${end - start} ms`)
-    }, 5000)
+    // setInterval(async () => {
+    //     var start =  new Date().getTime();
+    //     // TODO: Fetch data from Adafruit
+    //     try {
+    //       await getData();
+    //     } catch (error) {
+    //       console.error('Cannot fetch');
+    //     }
+    //     var end = new Date().getTime();
+    //     console.log(`Fetched time: ${end - start} ms`)
+    // }, 5000)
 };
 
 module.exports = initialFetch;

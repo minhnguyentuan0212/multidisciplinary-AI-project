@@ -13,11 +13,11 @@ async function get_rooms() {
     let rooms = [];
     for(const group of dataGroups) {
         let devices = [];
-        group.feeds.forEach(async feed => {
+        for (const feed of group.feeds) {
             let device = await Device.findOne({ key: feed.key });
             console.log(feed.key);
             devices.push(device._id);
-        });
+        };
         await Room.create({
             room_id: group.id.toString(),
             key: group.key,
