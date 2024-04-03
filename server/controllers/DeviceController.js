@@ -212,6 +212,26 @@ const addDatatoDevice = async (req, res) => {
     }
 };
 
+const receiveDataFromAdafruit = async (req, res) => {
+    console.log(req.body[0]);
+    try {
+        let device = await Device.findOne({ device_id: req.params.device_id.toString() });
+        if (device) {
+            device.data.unshift({
+                value: req.body[0].value,
+                created_at: req.body[0].created_at,
+            });
+            await device.save();
+            return res.status(200).json({code: '200', msg: 'Data received successfully' });
+        } else {
+            return res.status(404).json({code: '404', msg: 'Device not found'});
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({code: '500', msg: 'Server Error'});
+    }
+}
+
 module.exports = {
     getDevices,
     getDeviceById,
@@ -220,4 +240,5 @@ module.exports = {
     deleteDevice,
     getDeviceData,
     addDatatoDevice,
+    receiveDataFromAdafruit
 };

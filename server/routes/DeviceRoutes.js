@@ -7,6 +7,7 @@ const {
     deleteDevice,
     getDeviceData,
     addDatatoDevice,
+    receiveDataFromAdafruit,
 } = require('../controllers/DeviceController');
 const express = require('express');
 const router = express.Router();
@@ -17,6 +18,10 @@ router.get('/devices/:device_id/data', getDeviceData);
 router.post(
   '/devices/:device_id/data',
   addDatatoDevice
+);
+router.post(
+  '/devices/:device_id/receive_data',
+  receiveDataFromAdafruit
 );
 router.post(
   '/devices',
