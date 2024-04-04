@@ -47,6 +47,7 @@ async function getDevicesOfRoom(room_id) {
 
 async function toggleDevice(devide_id,currValue) {
     const state = `${(Number(currValue)+1)%2}`
-    await DevicesAPI.setStateDevice(devide_id,state)
+    const res = await DevicesAPI.setStateDevice(devide_id,state)
+    return res
 }
 export {getAllRoomsData,getDevicesOfRoom,toggleDevice};

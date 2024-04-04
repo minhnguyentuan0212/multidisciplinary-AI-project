@@ -11,11 +11,12 @@ async function setStateDevice(devide_id,state){
         }
     };
     try {
-        console.log(123456)
-        const res = await axios.post(`${IotServerURL}devices/${devide_id}/data`)
+        const res = await axios.post(`${IotServerURL}devices/${devide_id}/data`,data,config)
         console.log(res)
+        return true
     } catch(err) {
         console.log(err)
+        return false
     }
 }
 const DevicesAPI = {setStateDevice}
