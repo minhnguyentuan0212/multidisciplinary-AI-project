@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 function Device(data){
     const devices = data.data[0]
     const toggleFunction = data.data[1]
     const isOn = (devices.data.length != 0 &&  devices.data[0].value == 1)
-    // const [isOn,setOn] = useState(currState)
     return (
         <>
         <div 
@@ -16,7 +15,7 @@ function Device(data){
             <div className="col-6 align-content-end form-check form-switch">
                 <input className="form-check-input" type="checkbox" role="switch" checked={isOn}
                 onChange={(e) => {
-                    toggleFunction(devices.device_id,isOn?1:0)
+                    toggleFunction([devices.device_id,isOn?1:0])
                 }}
                 />
             </div>

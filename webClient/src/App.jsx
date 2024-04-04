@@ -14,6 +14,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [data, setData] = useState([])
   const [selectedRoom, setSelectedRoom] = useState("0")
+  const [toggleData,setToggleData] = useState(null)
   const [devicesData, setDevicesData] = useState({signal:[],devices:[]})
   useEffect(()=>{
     const getData = async () => {
@@ -27,11 +28,31 @@ function App() {
   useEffect(()=> {
     const getData = async () => {
       const res = await getDevicesOfRoom(selectedRoom)
-      setDevicesData(res)
+      if (selectedRoom != "0") setDevicesData(res);
       console.log(res)
     }
+    console.log(1)
     getData()
   },[selectedRoom,count])
+
+  useEffect(() => {
+    const sleep = (s) => {
+      return new Promise((resolve) => setTimeout(resolve, s));
+    }
+    const toggle = async ()=>{
+      const res = await toggleDevice(toggleData[0],toggleData[1])
+      // setCount((count+1)%2)
+      if (res) {
+        sleep(0.2).then(()=> {
+          setCount((count+1)%2)
+        })
+        
+      }
+    }
+    if (toggleData) {
+        toggle()
+    }
+  },[toggleData])
   return (
     <>
     <div className='row'>
@@ -41,13 +62,7 @@ function App() {
         <div className='col-6'>
         <RoomBar data={[data,selectedRoom,setSelectedRoom]}></RoomBar>
         <Statistics data={devicesData.signal}></Statistics>
-        <DevicesBar data={[devicesData.devices,((device_id,state)=>{
-          const toggle = async () => {
-            toggleDevice(device_id,state)
-          }
-          toggle()
-          setCount((count+1)%2)
-        })]}></DevicesBar>
+        <DevicesBar data={[devicesData.devices,setToggleData]}></DevicesBar>
         </div>
         <div className='col-3'>
           <div className='row'>
