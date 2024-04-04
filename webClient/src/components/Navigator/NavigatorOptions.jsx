@@ -5,12 +5,12 @@ export const MenuOptions = [
     {
         title: "Home",
         icon: <span class="material-icons">home</span>,
-        link: "#"
+        link: "/"
     },
     {
         title: "Insights",
         icon: <span class="material-icons">analytics</span>,
-        link: "#"
+        link: "Insights"
     },
     {
         title: "Recommends",

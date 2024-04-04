@@ -4,6 +4,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import './Navigator.css'
 import { MenuOptions, SettingOptions } from './NavigatorOptions';
+import { Link } from 'react-router-dom';
 // import { fetchData } from '../../actions/device';
 // import { postData } from '../../actions/device';
 
@@ -22,14 +23,16 @@ const Navigator = () => {
                 <div className="title">Menu</div>
                 {MenuOptions.map((val,key) => {
                     return (
-                        <li 
-                            key={key} 
-                            className="nav-row"
-                            onClick={() => {window.location.pathname = val.link}}
-                        >
-                            <div className="icon">{val.icon}</div>
-                            <div className="option">{val.title}</div>
-                        </li>
+                        <Link to={val.link}>
+                            <li 
+                                key={key} 
+                                className="nav-row"
+                                // onClick={() => {window.location.pathname = val.link}}
+                            >
+                                <div className="icon">{val.icon}</div>
+                                <div className="option">{val.title}</div>
+                            </li>
+                        </Link>
                     )
                 })}
             </ul>
