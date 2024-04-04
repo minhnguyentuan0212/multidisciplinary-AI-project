@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import RoomBar from './components/Rooms/RoomsBar'
 import Navigator from './components/Navigator/Navigator'
 import History from './components/History/History'
 import Member from './components/Member/Member'
 import './App.css'
 import Statistics from './components/Statistics/Statistics'
-import chartData from './dataForTestUI'
 import DevicesBar from './components/Devices/DevicesBar'
 import {getAllRoomsData,getDevicesOfRoom,toggleDevice} from './business/HomePageData'
 function App() {
@@ -29,24 +26,17 @@ function App() {
     const getData = async () => {
       const res = await getDevicesOfRoom(selectedRoom)
       if (selectedRoom != "0") setDevicesData(res);
-      console.log(res)
     }
-    console.log(1)
     getData()
   },[selectedRoom,count])
 
   useEffect(() => {
-    const sleep = (s) => {
-      return new Promise((resolve) => setTimeout(resolve, s));
-    }
     const toggle = async ()=>{
       const res = await toggleDevice(toggleData[0],toggleData[1])
-      // setCount((count+1)%2)
       if (res) {
-        sleep(0.2).then(()=> {
-          setCount((count+1)%2)
-        })
-        
+          setTimeout(()=>{
+            setCount((count+1)%2)
+          },1000)    
       }
     }
     if (toggleData) {
