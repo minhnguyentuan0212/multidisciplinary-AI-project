@@ -43,6 +43,6 @@ export const SettingOptions = [
     {
         title: "Logout",
         icon: <span class="material-icons">logout</span>,
-        link: "#"
+        link: "/login"
     }
 ]

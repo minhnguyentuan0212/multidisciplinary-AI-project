@@ -14,7 +14,7 @@ function RoomCard(data) {
             <div className="row h-50 d-flex align-items-center">
                 <div className="m-0 w-50 h-50">
                 <span className="m-0 material-symbols-outlined" style={{backgroundColor: 
-                    selected ? "#3054AA" : "#2396EF",borderRadius:"30%"
+                    selected ? "#3054AA" : "#2396EF", borderRadius:"30%"
                 }}>{room.icon}</span>
                 </div>
             </div>
@@ -22,7 +22,7 @@ function RoomCard(data) {
                 {room.name}
             </div>
             <div className="row ps-3 chivo-reg" style={{color: selected? 'white':"black"}}>
-                {room.devices.length} devices
+                {room.devices.length} {room.devices.length === 1 ? 'device' : 'devices'}
             </div>
         </div>
         

@@ -24,8 +24,35 @@ function Humidity(data){
         plugins: {
             legend: {
                 display: false
+            },
+            tooltip: {
+                enabled: true,
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    title: function(tooltipItems) {
+                        return `Time since start (mins): ${tooltipItems[0].label}`;
+                    },
+                    label: function(context) {
+                        return `Humidity: ${context.parsed.y}%`;
+                    }
+                }
             }
-        }
+        },
+        scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Time (mins)'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '%' 
+                    }
+                }
+            }
     }
     return (
         <>
@@ -45,6 +72,7 @@ function Humidity(data){
                 <Line
                 data={data.data}
                 options={options}
+                
                 >
 
                 </Line>

@@ -24,6 +24,19 @@ function Temperature(data){
         plugins: {
             legend: {
                 display: false
+            },
+            tooltip: {
+                enabled: true,
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    title: function(tooltipItems) {
+                        return `Time since start (mins): ${tooltipItems[0].label}`;
+                    },
+                    label: function(context) {
+                        return `Temperature: ${context.parsed.y}°C`;
+                    }
+                }
             }
         },
         // scales: {
@@ -31,6 +44,20 @@ function Temperature(data){
         //         display: false
         //     }
         // }
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Time (mins)' // Specify the unit for the horizontal axis
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: '°C' 
+                }
+            }
+        }
     }
     return (
         <>
