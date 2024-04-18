@@ -23,8 +23,8 @@ async function processSignalData(data){
         }]
     }
     for (var key in await data.data) {
-        signal.labels.push(key)
-        signal.datasets[0].data.push(Number(data.data[key].value))
+        signal.labels.unshift(key)
+        signal.datasets[0].data.unshift(Number(data.data[key].value))
     }
     res.data = signal
     return res
