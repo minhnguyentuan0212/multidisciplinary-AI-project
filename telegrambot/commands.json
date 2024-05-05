@@ -1,0 +1,25 @@
+{
+    "commands": [
+      {
+        "command": "summarize",
+        "description": "Tổng quan về tình trạng của ngôi nhà"
+      },
+      {
+        "command": "get",
+        "description": "Đọc thông tin mới nhất của thiết bị"
+      },
+      {
+        "command": "toggle",
+        "description": "Bật/tắt thiết bị"
+      },
+      {
+        "command": "turnon",
+        "description": "Bật thiết bị"
+      },
+      {
+        "command": "turnoff",
+        "description": "Tắt thiết bị"
+      }
+    ],
+    "language_code": "en"
+  }
