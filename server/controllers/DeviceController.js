@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator');
 
 const getDevices = async (req, res) => {
     try {
-        const devices = await Device.find();
+        const devices = await Device.find({},{data: 0});
         return res.status(200).json(devices);
     } catch (error) {
         console.error(error.message);
