@@ -1,2 +1,6 @@
 node_modules
 gen_db.js
+__pycache__
+.env
+audio.json
+data.json

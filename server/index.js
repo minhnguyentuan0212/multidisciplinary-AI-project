@@ -6,7 +6,7 @@ const express = require('./config/express.js');
 const initialFetch = require('./adafruit/fetch');
 const connectDB = require('./database/conn');
 
-const PORT = 5000;
+const PORT = 5050;
 
 const app = express();
 const httpServer = createServer(app);
