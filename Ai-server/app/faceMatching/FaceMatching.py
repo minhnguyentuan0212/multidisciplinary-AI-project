@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import torchvision
 import torch
-import PIL
+from PIL import Image
 import numpy as np
 from packaging import version
 import platform
@@ -17,12 +17,14 @@ class FaceMatching:
         transforms = torchvision.transforms.ToTensor()
 
         # Read the two images and transform them to tensors
-        img1 = PIL.Image.open(base_img).convert('RGB')
+        # img1 = PIL.Image.open(base_img).convert('RGB')
+        img1 = Image.fromarray(base_img).convert('RGB')
         img1 = transforms(img1)
         img1 = img1.unsqueeze(0)
         img1 = img1.to(device)
         
-        img2 = PIL.Image.open(check_img).convert('RGB')
+        # img2 = Image.open(check_img).convert('RGB')
+        img2 = Image.fromarray(check_img).convert('RGB')
         img2 = transforms(img2)
         img2 = img2.unsqueeze(0)
         img2 = img2.to(device)
