@@ -14,7 +14,7 @@ faceController = APIRouter()
 async def faceMatching():
     img = fs.liveChecking()
     res = fs.faceMatching(img)
-    if res['distance'] > 1.1:
+    if res['distance'] > 2.1:
         res['match'] = False
     else:
         res['match'] = True

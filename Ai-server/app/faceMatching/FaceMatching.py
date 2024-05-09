@@ -19,7 +19,8 @@ class FaceMatching:
         # Read the two images and transform them to tensors
         # img1 = PIL.Image.open(base_img).convert('RGB')
         img1 = Image.fromarray(base_img).convert('RGB')
-        img1 = img1.resize((250, 250), Image.BICUBIC)
+        w, h = img1.size
+        img1 = img1.resize((w, w), Image.BICUBIC)
         img1 = transforms(img1)
         img1 = img1.unsqueeze(0)
         img1 = img1.to(device)
