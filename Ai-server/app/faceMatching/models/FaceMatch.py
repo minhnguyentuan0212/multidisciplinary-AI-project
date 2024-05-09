@@ -48,8 +48,7 @@ class Backbone(nn.Module):
         x = F.max_pool2d(x, 2)
 
         x = torch.flatten(x, 1)
-        # x = self.fc1(x)
-        x = nn.Linear(x.size()[0], 128)
+        x = self.fc1(x)
         x = F.relu(x)
         
         return x

@@ -14,18 +14,20 @@ class FaceMatching:
     
     def __call__(self, base_img, check_img):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        print(device)
         transforms = torchvision.transforms.ToTensor()
 
         # Read the two images and transform them to tensors
         # img1 = PIL.Image.open(base_img).convert('RGB')
+        base_img = base_img.astype(np.uint8)
         img1 = Image.fromarray(base_img).convert('RGB')
-        w, h = img1.size
-        img1 = img1.resize((w, w), Image.BICUBIC)
+        img1 = img1.resize((250, 250), Image.BICUBIC)
         img1 = transforms(img1)
         img1 = img1.unsqueeze(0)
         img1 = img1.to(device)
         
         # img2 = Image.open(check_img).convert('RGB')
+        check_img = check_img.astype(np.uint8)
         img2 = Image.fromarray(check_img).convert('RGB')
         img2 = img2.resize((250, 250), Image.BICUBIC)
         img2 = transforms(img2)
@@ -34,8 +36,7 @@ class FaceMatching:
 
         # Define your model
         model = self.model.to(device)
-        model.load_state_dict(torch.load('./weights/model.pt'))
-
+        model.load_state_dict(torch.load('./weights/model.pt', map_location=torch.device('cpu')))
         # embedd the images into vectors
         out_img1 = model.backbone(img1)
         out_img2 = model.backbone(img2)

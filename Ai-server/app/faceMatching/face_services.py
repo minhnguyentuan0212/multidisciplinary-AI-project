@@ -1,14 +1,14 @@
-from utils.database_connection import DatabaseConnection
-from fastapi.encoders import jsonable_encoder
 import numpy as np
 
 from FaceMatching import FaceMatching
 from LiveChecking import LiveChecking
-db = DatabaseConnection()
-
-async def faceMatching(img):
+import json
+def faceMatching(img):
     ## connect DB to retrieve all sample images of userId
-    samples = {}
+    with open('samples.json', 'r') as file:
+        samples = json.load(file)
+    # samples = {}
+
     faceMatching = FaceMatching()
 
     minDist = 1000
@@ -16,17 +16,18 @@ async def faceMatching(img):
     
     for user in samples:
         for base_img in samples[user]:
-            dist = faceMatching(base_img,img)
+            print(np.array(base_img), np.array(base_img).shape)
+            # print()
+            dist = faceMatching(np.array(base_img),img)
             if dist < minDist:
                 minDist = dist
                 minUser = user
-
     return {'distance': minDist, 'user': minUser}
 
-async def liveChecking(img):
+def liveChecking():
     ## connect DB to retrieve all sample images of userId
     def printout(frame):
         return faceMatching(frame)
-    liveChecking = LiveChecking()
-    img = liveChecking(printout)
-    return {'img': np.array(img)}
+    liveChecking = LiveChecking(printout)
+    img = liveChecking()
+    return np.array(img)

@@ -83,7 +83,7 @@ function Home() {
   const handleCameraIconClick = async () => {
     try {
       // Make a POST request to the server-side endpoint
-      await axios.post('http://localhost:3001/execute-python-script');
+      await axios.post('http://localhost:3001/execute-python-script', {});
       console.log('Python script executed successfully');
     } catch (error) {
       console.error('Error executing Python script:', error);
