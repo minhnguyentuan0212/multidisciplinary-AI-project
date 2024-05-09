@@ -11,7 +11,8 @@ import PIL
 faceController = APIRouter()
 
 @faceController.post('/')
-async def faceMatching(img):
+async def faceMatching():
+    img = fs.liveChecking()
     res = fs.faceMatching(img)
     if res['distance'] > 1.1:
         res['match'] = False
