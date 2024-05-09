@@ -25,6 +25,8 @@ async def faceMatching(img):
 
 async def liveChecking(img):
     ## connect DB to retrieve all sample images of userId
+    def printout(frame):
+        return faceMatching(frame)
     liveChecking = LiveChecking()
-    img = liveChecking()
+    img = liveChecking(printout)
     return {'img': np.array(img)}
